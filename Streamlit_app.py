@@ -1,16 +1,6 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
-#
-conn = st.connection("snowflake")
-
-# Perform query.
-df = conn.query("SELECT * from msmoothies.public.fruit_Orders;", ttl=600)
-
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.NAME} has a :{row.PET}:")
-#
 
 
 # Write directly to the app
