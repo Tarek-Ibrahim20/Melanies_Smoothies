@@ -35,18 +35,3 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success(f"Your smoothie is ordered, {name_on_order}!", icon="✅")
 
-import requests
-
-
-# Fetch data from Fruityvice API
-try:
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-    fruityvice_data = fruityvice_response.json()  # Ensure response is in JSON format
-    st.json(fruityvice_data)  # Display raw JSON data
-
-    # If the response is complex, you might need to handle it more carefully
-    fv_df = st.dataframe(data=fruityvice_data, use_container_width=True)
-except requests.exceptions.JSONDecodeError:
-    st.error("Failed to decode JSON. Please check the API response.")
-except Exception as e:
-    st.error(f"An error occurred: {e}")
